@@ -5,3 +5,7 @@ function getListPosts()
     $posts = getPosts();
     require 'views/listPost.php';
 }
+
+function addPostPage()
+{
+}

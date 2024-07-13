@@ -29,6 +29,8 @@ if ($_GET['action']) {
                 getHome();
             } else if ($action == 'getListPosts') {
                 getListPosts();
+            } else if ($action === 'addPostPage') {
+                addPostPage();
             }
         }
     }

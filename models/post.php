@@ -13,9 +13,9 @@ function getPosts()
 
 function addPosts($title, $content, $image)
 {
-    $date = ('Y-m-d-h-m-i');
+    $date = 'Y-m-d-h-m-i';
     $connexion = connectBdd();
-    $request = $connexion->prepare("INSERT INTO post (post_id, title, content, image, date ) VALUES (null, ?, ?, ?, ?)");
+    $request = $connexion->prepare("INSERT INTO post (post_id, title, content, image, date ) VALUES (NULL, ?, ?, ?, ?)");
     $affectedLines = $request->execute([$title, $content, $image, $date]);
     return $affectedLines > 0;
 }

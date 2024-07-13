@@ -1,5 +1,6 @@
 <?php
 require 'controllers/TestController.php';
+require 'controllers/HomeController.php';
 
 if ($_GET['action']) {
     // Define the path to use it in controller
@@ -23,6 +24,8 @@ if ($_GET['action']) {
             require_once(PATH . 'controllers/' . $controller . '.php');
             if ($action == 'getTest') {
                 getTest();
+            } else if ($action == 'getHome') {
+                getHome();
             }
         }
     }

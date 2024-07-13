@@ -7,7 +7,7 @@ function  connectBdd()
     $username = "root";
     $password = "";
 
-    $dns = "mysql:host=$dbhost; dbname= $dbname; charset=utf-8";
+    $dns = "mysql:host=$dbhost;dbname=$dbname;charset=UTF8";
     try {
         $connexion = new PDO($dns, $username, $password);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

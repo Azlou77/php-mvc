@@ -2,6 +2,7 @@
 
 function  connectBdd()
 {
+
     $dbname = "blog";
     $dbhost = "localhost";
     $username = "root";
@@ -9,6 +10,7 @@ function  connectBdd()
 
     $dns = "mysql:host=$dbhost;dbname=$dbname;charset=UTF8";
     try {
+
         $connexion = new PDO($dns, $username, $password);
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $connexion;

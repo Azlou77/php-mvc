@@ -6,6 +6,8 @@ ob_start()
 
 <div class="container">
     <div class="row">
+
+        <!-- Loop through the posts and display them -->
         <?php foreach ($posts as $post) { ?>
             <div class="card" style="width:18rem">
                 <div class="card-body">

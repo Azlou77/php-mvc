@@ -1,6 +1,7 @@
 <?php
 require 'controllers/TestController.php';
 require 'controllers/HomeController.php';
+require 'controllers/AdminController.php';
 
 if ($_GET['action']) {
     // Define the path to use it in controller

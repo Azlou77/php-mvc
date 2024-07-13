@@ -27,6 +27,8 @@ if ($_GET['action']) {
                 getTest();
             } else if ($action == 'getHome') {
                 getHome();
+            } else if ($action == 'getListPosts') {
+                getListPosts();
             }
         }
     }

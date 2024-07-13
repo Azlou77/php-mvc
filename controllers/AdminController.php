@@ -1,5 +1,5 @@
 <?php
-require 'models/post.php';
+require_once 'models/post.php';
 function getListPosts()
 {
     $posts = getPosts();

@@ -20,8 +20,8 @@ if ($_GET['action']) {
 
         if (!empty($params[1])) {
             $action = $params[1];
-
             require_once(PATH . 'controllers/' . $controller . '.php');
+
             if ($action == 'getTest') {
                 getTest();
             } else if ($action == 'getHome') {

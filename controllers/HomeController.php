@@ -1,6 +1,6 @@
 <?php
 require 'models/post.php';
-function HomeController()
+function getHome()
 {
     $posts = getPosts();
     require 'views/home.php';

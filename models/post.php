@@ -37,3 +37,14 @@ function modifyPosts($id, $title, $content, $image)
     $success = $request->execute();
     return $success;
 }
+
+function getPostsInfo($id)
+{
+    $connexion = connectBdd();
+    $request = "SELECT * from post WHERE id = :id";
+    $request = $connexion->prepare($request);
+    $request->bindParam(':id', $id);
+    $request->execute();
+    $results = $request->fetch(PDO::FETCH_ASSOC);
+    return $results;
+}

@@ -13,9 +13,27 @@ function getPosts()
 
 function addPosts($title, $content, $image)
 {
-    $date = 'Y-m-d-h-m-i';
+    $date = 'Y-m-d h-m-i';
     $connexion = connectBdd();
-    $request = $connexion->prepare("INSERT INTO post (post_id, title, content, image, date ) VALUES (NULL, ?, ?, ?, ?)");
-    $affectedLines = $request->execute([$title, $content, $image, $date]);
-    return $affectedLines > 0;
+    $request = "INSERT INTO post (title, content, image, date) VALUES (:title, :content, :image, :date)";
+    $request = $connexion->prepare($request);
+    $request->bindParam(':title', $title);
+    $request->bindParam(':content', $content);
+    $request->bindParam(':image', $image);
+    $request->bindParam(':date', $date);
+    $success = $request->execute();
+    return $success;
+}
+
+function modifyPosts($id, $title, $content, $image)
+{
+    $connexion = connectBdd();
+    $request = "UPDATE post SET title = :title, content = :content, image = :image WHERE id = :id";
+    $request = $connexion->prepare($request);
+    $request->bindParam(':id', $id);
+    $request->bindParam(':title', $title);
+    $request->bindParam(':content', $content);
+    $request->bindParam(':image', $image);
+    $success = $request->execute();
+    return $success;
 }

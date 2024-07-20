@@ -23,3 +23,22 @@ function addPostPage()
     }
     require "views/formPost.php";
 }
+
+function modifyPostPage($id)
+{
+    $title = $content = $image = "";
+    if (!empty($_POST['title']) && !empty($_POST['content'])) {
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+    } else {
+        die("Error: missing title or content");
+    }
+    $success = modifyPosts($id, $title, $content, $image);
+    if (!$success) {
+        die("Error: could not modify post");
+    } else {
+        header("Location: /php-mvc/AdminController
+        /getListPosts");
+    }
+    require "views/formModify.php";
+}

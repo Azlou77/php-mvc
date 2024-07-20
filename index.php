@@ -23,6 +23,7 @@ if ($_GET['action']) {
             $action = $params[1];
             require_once(PATH . 'controllers/' . $controller . '.php');
 
+
             if ($action == 'getTest') {
                 getTest();
             } else if ($action == 'getHome') {
@@ -31,6 +32,11 @@ if ($_GET['action']) {
                 getListPosts();
             } else if ($action === 'addPostPage') {
                 addPostPage();
+            } else if ($action === 'modifyPostPage') {
+                if (!empty($params[2])) {
+                    $id = $params[2];
+                    modifyPostPage($id);
+                }
             }
         }
     }

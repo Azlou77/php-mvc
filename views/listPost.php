@@ -21,17 +21,17 @@ ob_start();
 
         <?php foreach ($posts as $post) { ?>
             <tr>
-                <th scope="row"><?php echo $post['post_id']; ?></th>
-                <td><?php echo $post['title'];  ?></td>
-                <td><?php echo $post['content'];  ?></td>
-                <td><?php echo $post['date'];  ?></td>
-                <td><a href="" class="btn btn-warning">modifier</a><a href="" class="btn btn-danger">supprimer</td>
+                <th scope="row"><?= $post['post_id']; ?></th>
+                <td><?= $post['title'];  ?></td>
+                <td><?= $post['content'];  ?></td>
+                <td><?= $post['date'];  ?></td>
+                <td><a href="/mvc/AdminController/modifyPostPage/<?= $post['post_id'];  ?>" class="btn btn-warning">modifier</a><a href="" class="btn btn-danger">supprimer</td>
             </tr>
         <?php } ?>
     </tbody>
 </table>
 
-<a href="" class="btn btn-primary"> Create posts</a>
+<a href="/mvc/AdminController/addPostPage" class="btn btn-primary"> Create posts</a>
 
 <?php
 $content = ob_get_clean();

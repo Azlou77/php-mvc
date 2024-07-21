@@ -4,13 +4,13 @@ require 'controllers/HomeController.php';
 require 'controllers/AdminController.php';
 
 if ($_GET['action']) {
-    // Define the path to use it in controller
+    // Define the path
     define('PATH', str_replace('index.php', "", $_SERVER['SCRIPT_FILENAME']));
 
-    // Add parameters to the url like this http://localhost:8080/php-mvc/index.php?action=controller/method
+    // Get the parameters
     $params = explode("/", $_GET['action']);
 
-    // Return the parameters first [0] : controller and second [1] method
+    // Expected  : Array ( [0] => AdminController [1] => getListPosts )
     print_r($params);
 
 

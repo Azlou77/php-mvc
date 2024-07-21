@@ -7,7 +7,7 @@ ob_start();
 ?>
 
 
-<form action="" method="POST" enctype="multipart/form-data">
+<form action="/php-mvc/AdminController/modifyPostPage" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">title</label>
 

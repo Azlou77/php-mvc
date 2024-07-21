@@ -25,7 +25,7 @@ ob_start();
                 <td><?= $post['title'];  ?></td>
                 <td><?= $post['content'];  ?></td>
                 <td><?= $post['date'];  ?></td>
-                <td><a href="/mvc/AdminController/modifyPostPage/<?= $post['post_id'];  ?>" class="btn btn-warning">modifier</a><a href="" class="btn btn-danger">supprimer</td>
+                <td><a href="/php-mvc/AdminController/modifyPostPage/<?= $post['post_id'];  ?>" class="btn btn-warning">modifier</a><a href="" class="btn btn-danger">supprimer</td>
             </tr>
         <?php } ?>
     </tbody>

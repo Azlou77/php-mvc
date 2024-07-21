@@ -8,14 +8,15 @@ function getListPosts()
 
 function addPostPage()
 {
-    // Title: : contains only letters and white spaces
-    // Sanitize the title
-    $sanitizedTitle = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-    // Validate the title
-    $validedTitle = preg_match("/^[a-zA-Z ]*$/", $sanitizedTitle);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Title: : contains only letters and white spaces
+        // Sanitize the title
+        $sanitizedTitle = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+        // Validate the title
+        $validedTitle = preg_match("/^[a-zA-Z ]*$/", $sanitizedTitle);
         $errors = [];
 
         if (isset($_POST['title']) && strlen($_POST['title']) === 0) {
@@ -92,19 +93,41 @@ function test_input($data)
 function modifyPostPage($id)
 {
     $post = getPostsInfo($id);
-    $title = $content = $image = "";
-    if (!empty($_POST['title']) && !empty($_POST['content'])) {
-        $title = $_POST['title'];
-        $content = $_POST['content'];
-    } else {
-        die("Error: missing title or content");
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Title: : contains only letters and white spaces
+        // Sanitize the title
+        $sanitizedTitle = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+        // Validate the title
+        $validedTitle = preg_match("/^[a-zA-Z ]*$/", $sanitizedTitle);
+        $errors = [];
+
+        if (isset($_POST['title']) && strlen($_POST['title']) === 0) {
+            $errors['title'] = "Error: title too short";
+        } else {
+            $title = test_input($_POST['title']);
+            if (!$validedTitle) {
+                $errors['title'] = "Error: title contains only letters and white spaces";
+            }
+        }
+        if (isset($_POST['content']) && strlen($_POST['content']) === 0) {
+            $errors['content'] = "Error: content too short";
+        } else {
+            $content = test_input($_POST['content']);
+        }
+        if (isset($_FILES['file']['name']) && strlen($_FILES['file']['name']) === 0) {
+            $errors['image'] =  "Error: missing image";
+        } else if (isset($_FILES['file']['name']) && strlen($_FILES['file']['name']) > 0) {
+            validation();
+            $image = test_input($_FILES['file']['name']);
+        } else {
+            $image = $post['image'];
+        }
+        if (empty($errors)) {
+            modifyPosts($id, $image, $_POST['title'], $_POST['content']);
+            header("Location: /php-mvc/AdminController/getListPosts");
+        }
     }
-    $success = modifyPosts($id, $title, $content, $image);
-    if (!$success) {
-        die("Error: could not modify post");
-    } else {
-        header("Location: /php-mvc/AdminController
-        /getListPosts");
-    }
+
     require_once "views/formModify.php";
 }

@@ -25,12 +25,12 @@ function addPosts($title, $content, $image)
     return $success;
 }
 
-function modifyPosts($id, $title, $content, $image)
+function modifyPosts($post_id, $title, $content, $image)
 {
     $connexion = connectBdd();
-    $request = "UPDATE post SET title = :title, content = :content, image = :image WHERE id = :id";
+    $request = "UPDATE post SET title = :title, content = :content, image = :image WHERE post_id = :post_id";
     $request = $connexion->prepare($request);
-    $request->bindParam(':id', $id);
+    $request->bindParam(':post_id', $post_id);
     $request->bindParam(':title', $title);
     $request->bindParam(':content', $content);
     $request->bindParam(':image', $image);
@@ -41,10 +41,10 @@ function modifyPosts($id, $title, $content, $image)
 function getPostsInfo($id)
 {
     $connexion = connectBdd();
-    $request = "SELECT * from post WHERE id = :id";
+    $request = "SELECT * from post WHERE post_id = :post_id";
     $request = $connexion->prepare($request);
-    $request->bindParam(':id', $id);
-    $request->execute();
+    $request->bindParam(':post_id', $id);
+    $request->execute([':post_id' => $id]);
     $results = $request->fetch(PDO::FETCH_ASSOC);
     return $results;
 }

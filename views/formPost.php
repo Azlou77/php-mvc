@@ -31,7 +31,7 @@ ob_start();
             <label for="image">Image</label>
             <input type="file" class="form-control-file" id="image" name="file">
             <?php if (isset($errors['image'])) : ?>
-                <span class="text-danger"><?= $errors['image'] ?></span>
+                <span class="errors text-danger"><?= $errors['image'] ?></span>
             <?php endif; ?>
 
         </div>

@@ -48,3 +48,13 @@ function getPostsInfo($id)
     $results = $request->fetch(PDO::FETCH_ASSOC);
     return $results;
 }
+
+function deletePost($id)
+{
+    $connexion = connectBdd();
+    $request = "DELETE from post WHERE post_id = :post_id";
+    $request = $connexion->prepare($request);
+    $request->bindParam(':post_id', $id);
+    $success = $request->execute();
+    return $success;
+}

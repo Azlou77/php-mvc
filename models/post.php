@@ -19,9 +19,11 @@ function addPosts($title, $content, $image)
     $request = $connexion->prepare($request);
     $request->bindParam(':title', $title);
     $request->bindParam(':content', $content);
+    // Array to string conversion 
     $request->bindParam(':image', $image);
     $request->bindParam(':date', $date);
     $success = $request->execute();
+
     return $success;
 }
 

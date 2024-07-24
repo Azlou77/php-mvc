@@ -31,7 +31,7 @@ ob_start();
     </tbody>
 </table>
 
-<a href="/mvc/AdminController/addPostPage" class="btn btn-primary"> Create posts</a>
+<a href="/php-mvc/AdminController/addPostPage" class="btn btn-primary"> Create posts</a>
 
 <?php
 $content = ob_get_clean();

@@ -33,9 +33,15 @@ if ($_GET['action']) {
             } else if ($action === 'addPostPage') {
                 addPostPage();
             } else if ($action === 'modifyPostPage') {
+                $id = $params[2];
                 if (!empty($params[2])) {
-                    $id = $params[2];
+
                     modifyPostPage($id);
+                }
+            } else if ($action === 'deletePostPage') {
+                $id = $params[2];
+                if (!empty($params[2])) {
+                    deletePostPage($id);
                 }
             }
         }

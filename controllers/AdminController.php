@@ -75,43 +75,19 @@ function test_input($data)
 function modifyPostPage($id)
 {
     $post = getPostsInfo($id);
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Title: : contains only letters and white spaces
-        // Sanitize the title
-        $sanitizedTitle = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
-
-        // Validate the title
-        $validedTitle = preg_match("/^[a-zA-Z ]*$/", $sanitizedTitle);
-        $errors = [];
-
-        if (isset($_POST['title']) && strlen($_POST['title']) === 0) {
-            echo  "Error: title too short";
-        } else {
-            $title = test_input($_POST['title']);
-            if (!$validedTitle) {
-                echo  "Error: title contains only letters and white spaces";
+    if (!empty($_POST) and !empty($_FILES)) {
+        if (validation() == false) {
+            if (!empty($_FILES['file']['name'])) {
+                $image = $_FILES['file']['name'];
+            } else {
+                $image = $post['image'];
             }
-        }
-        if (isset($_POST['content']) && strlen($_POST['content']) === 0) {
-            $errors['content'] = "Error: content too short";
-        } else {
-            $content = test_input($_POST['content']);
-        }
-        if (isset($_FILES['file']['name']) && strlen($_FILES['file']['name']) === 0) {
-            $errors['image'] =  "Error: missing image";
-        } else if (isset($_FILES['file']['name']) && strlen($_FILES['file']['name']) > 0) {
-            validation();
-            $image = test_input($_FILES['file']['name']);
-        } else {
-            $image = $post['image'];
-        }
-        if (empty($errors)) {
-            modifyPosts($id, $image, $_POST['title'], $_POST['content']);
+            modifyPosts($id, $_POST['title'], $_POST['content'], $image);
             header("Location: /php-mvc/AdminController/getListPosts");
         }
     }
 
-    require_once "views/formModify.php";
+    require_once 'views/formModify.php';
 }
 function deletePostPage($id)
 {

@@ -3,7 +3,8 @@ require 'controllers/TestController.php';
 require 'controllers/HomeController.php';
 require 'controllers/AdminController.php';
 
-if ($_GET['action']) {
+if (isset($_GET['action'])) {
+
     // Define the path
     define('PATH', str_replace('index.php', "", $_SERVER['SCRIPT_FILENAME']));
 
@@ -22,26 +23,22 @@ if ($_GET['action']) {
         if (!empty($params[1])) {
             $action = $params[1];
             require_once(PATH . 'controllers/' . $controller . '.php');
-
-
-            if ($action == 'getTest') {
-                getTest();
-            } else if ($action == 'getHome') {
-                getHome();
-            } else if ($action == 'getListPosts') {
-                getListPosts();
-            } else if ($action === 'addPostPage') {
-                addPostPage();
-            } else if ($action === 'modifyPostPage') {
+            if (!empty($params[2])) {
                 $id = $params[2];
-                if (!empty($params[2])) {
-
+                if ($action == 'modifyPostPage') {
                     modifyPostPage($id);
-                }
-            } else if ($action === 'deletePostPage') {
-                $id = $params[2];
-                if (!empty($params[2])) {
+                } else if ($action == 'deletePostPage') {
                     deletePostPage($id);
+                }
+            } else {
+                if ($action == 'getTest') {
+                    getTest();
+                } else if ($action == 'getHome') {
+                    getHome();
+                } else if ($action == 'getListPosts') {
+                    getListPosts();
+                } else if ($action == 'addPostPage') {
+                    addPostPage();
                 }
             }
         }

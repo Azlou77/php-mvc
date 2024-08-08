@@ -3,33 +3,36 @@
 namespace App\Database;
 
 use PDO;
+use PDOException;
 
 
 class Connexion
 {
 
-    private string $dbname  = "blog";
-    private string $dbhost = "localhost";
-    private string  $username = "root";
-    private string $password = "";
+    private const DBNAME  = "blog";
+    private const DBHOST = "localhost";
+    private const  USERNAME = "root";
+    private const PASSWORD = "";
 
-    private  $connexion;
+    private  static $connexion;
 
 
-    public function __construct($dbname, $dbhost, $username, $password)
+    public function __construct()
     {
-        $this->dbname = $dbname;
-        $this->dbhost = $dbhost;
-        $this->username = $username;
-        $this->password = $password;
+        $dns = "mysql:dbname=" . self::DBNAME . ";host=" . self::DBHOST;
+        try {
+            self::$connexion = new PDO($dns, self::USERNAME, self::PASSWORD);
+            self::$connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
 
-    public function getPDO()
+    public static function getPDO()
     {
-        if ($this->connexion === null) {
-            $this->connexion = new PDO("mysql:dbname={$this->dbname};host={$this->dbhost}", $this->username, $this->password);
-            $this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $this->connexion;
+        if (self::$connexion === null) {
+            self::$connexion = new Connexion();
         }
+        return self::$connexion;
     }
 }

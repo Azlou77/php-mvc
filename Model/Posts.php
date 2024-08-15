@@ -1,23 +1,12 @@
 <?php
 
 
-use  Database\Connexion;
+namespace Model;
 
-require 'connexion.php';
-class Post extends Connexion
-{
-    public ?PDO $connexion = null;
-}
 
-    function getPosts()
-    {
+class Posts extends ModelDefault {}
 
-        $connexion = Connexion::getPDO();
-        $request = "SELECT * from post";
-        $request = $this->$connexion->getPDO()->query($request);
-        $results = $request->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
-    }
+function getPosts() {}
 
     // function addPosts($title, $content, $image)
     // {
@@ -68,4 +57,3 @@ class Post extends Connexion
     //     $success = $request->execute();
     //     return $success;
     // }
-}

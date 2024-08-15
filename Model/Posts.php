@@ -4,9 +4,53 @@
 namespace Model;
 
 
-class Posts extends ModelDefault {}
+class Posts extends ModelDefault
+{
+    protected $post_id;
+    protected $title;
+    protected $content;
+    protected $image;
+    protected $date;
 
-function getPosts() {}
+    public function __construct()
+    {
+        $this->table = "post";
+    }
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    public function setTitle($title)
+    {
+        return $this->title = $title;
+    }
+    public function getContent()
+    {
+        return $this->content;
+    }
+    public function setContent($content)
+    {
+        return $this->content = $content;
+    }
+    public function getImage()
+    {
+        return $this->image;
+    }
+    public function setImage($image)
+    {
+        return $this->image = $image;
+    }
+    public function getDate()
+    {
+        return $this->date;
+    }
+    public function setDate($date)
+    {
+        return  $this->date = $date;
+    }
+}
+
+
 
     // function addPosts($title, $content, $image)
     // {

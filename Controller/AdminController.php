@@ -1,10 +1,8 @@
 <?php
-require_once 'models/post.php';
-function getListPosts()
-{
-    $posts = getPosts();
-    require_once  'views/listPost.php';
-}
+
+use Model\Posts;
+
+function getListPosts() {}
 
 function addPostPage()
 {
@@ -72,27 +70,27 @@ function test_input($data)
     return $data;
 }
 
-function modifyPostPage($id)
-{
-    $post = getPostsInfo($id);
-    if (!empty($_POST) and !empty($_FILES)) {
-        if (validation() == false) {
-            if (!empty($_FILES['file']['name'])) {
-                $image = $_FILES['file']['name'];
-            } else {
-                $image = $post['image'];
-            }
-            modifyPosts($id, $_POST['title'], $_POST['content'], $image);
-            header("Location: /php-mvc/AdminController/getListPosts");
-        }
-    }
+// function modifyPostPage($id)
+// {
+//     $post = getPostsInfo($id);
+//     if (!empty($_POST) and !empty($_FILES)) {
+//         if (validation() == false) {
+//             if (!empty($_FILES['file']['name'])) {
+//                 $image = $_FILES['file']['name'];
+//             } else {
+//                 $image = $post['image'];
+//             }
+//             modifyPosts($id, $_POST['title'], $_POST['content'], $image);
+//             header("Location: /php-mvc/AdminController/getListPosts");
+//         }
+//     }
 
-    require_once 'views/formModify.php';
-}
-function deletePostPage($id)
-{
-    $post = getPostsInfo($id);
-    unlink("assets/uploads/" . $post['image']);
-    deletePost($id);
-    header("Location: /php-mvc/AdminController/getListPosts");
-}
+//     require_once 'views/formModify.php';
+// }
+// function deletePostPage($id)
+// {
+//     $post = getPostsInfo($id);
+//     unlink("assets/uploads/" . $post['image']);
+//     deletePost($id);
+//     header("Location: /php-mvc/AdminController/getListPosts");
+// }

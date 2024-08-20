@@ -4,7 +4,9 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\": "database/",
-            "Model\\": "Model/"
+            "Model\\": "Model/",
+            "Controller\\": "Controller",
+            "View\\": "View/"
         }
     },
     "require-dev": {

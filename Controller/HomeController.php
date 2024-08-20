@@ -1,5 +1,7 @@
 <?php
-require 'models/post.php';
+
+use Model\Posts;
+
 function getHome()
 {
     $posts = getPosts();

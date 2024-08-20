@@ -2,10 +2,10 @@
 
 namespace Model;
 
-use App\Database\Connexion;
 
+use App\Database\Database;
 
-abstract class ModelDefault extends Connexion
+abstract class ModelDefault extends Database
 {
 
     protected $table;

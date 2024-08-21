@@ -21,11 +21,11 @@ ob_start();
 
         <?php foreach ($posts as $post) { ?>
             <tr>
-                <th scope="row"><?= $post['post_id']; ?></th>
-                <td><?= $post['title'];  ?></td>
-                <td><?= $post['content'];  ?></td>
-                <td><?= $post['date'];  ?></td>
-                <td><a href="/php-mvc/AdminController/modifyPostPage/<?= $post['post_id'];  ?>" class="btn btn-warning">modifier</a><a href="/php-mvc/AdminController/deletePostPage/<?= $post['post_id'];  ?>" class="btn btn-danger">supprimer</td>
+                <th scope="row"><?= $post->post_id;  ?></th>
+                <td><?= $post->title;  ?></td>
+                <td><?= $post->content;  ?></td>
+                <td><?= $post->date;  ?></td>
+                <td><a href="/php-mvc/AdminController/modifyPostPage/<?= $post->post_id;  ?>" class="btn btn-warning">modifier</a><a href="/php-mvc/AdminController/deletePostPage/<?= $post->post_id  ?>" class="btn btn-danger">supprimer</td>
             </tr>
         <?php } ?>
     </tbody>

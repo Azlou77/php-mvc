@@ -1,12 +1,3 @@
-<?php
-
-$title = "List of Posts";
-
-ob_start();
-
-?>
-
-
 <table class="table">
     <thead>
         <tr>
@@ -32,9 +23,3 @@ ob_start();
 </table>
 
 <a href="/php-mvc/AdminController/addPostPage" class="btn btn-primary"> Create posts</a>
-
-<?php
-$content = ob_get_clean();
-
-require_once 'layout.php';
-?>

@@ -6,7 +6,7 @@ use PDO;
 use PDOException;
 
 
-class Database
+class DBConnection
 {
 
     private const DBNAME  = "blog";
@@ -31,7 +31,7 @@ class Database
     public static function getPDO()
     {
         if (self::$connexion === null) {
-            self::$connexion = new Database();
+            self::$connexion = new DBConnection();
         }
         return self::$connexion;
     }

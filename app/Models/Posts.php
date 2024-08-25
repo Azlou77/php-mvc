@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Model;
+namespace App\Models;
 
 
 class Posts extends ModelDefault

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
-abstract class Controller
+abstract class MainController
 {
     public function render(string $path, array $params = [])
     {
         extract($params);
         ob_start();
-        require 'views/' . $path . '.php';
+        require 'View/' . $path . '.php';
         $content = ob_get_clean();
-        require 'views/layout.php';
+        require 'View/layout.php';
     }
 }

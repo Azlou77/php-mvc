@@ -1,11 +1,11 @@
 <?php
 
-namespace Model;
+namespace App\Models;
 
 
-use App\Database\Database;
+use App\Database\DBConnection;
 
-abstract class ModelDefault extends Database
+abstract class ModelDefault extends DBConnection
 {
 
     protected $table;
